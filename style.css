@@ -97,3 +97,46 @@ textarea,
 select {
   font: inherit;
 }
+
+a {
+  text-decoration: none;
+}
+h1 {
+  font-size: var(--primary-xlg);
+  font-weight: var(--primary-bold-700);
+}
+h2 {
+  font-size: var(--primary-lg);
+  font-weight: var(--primary-semi-bold-600);
+}
+h3 {
+  font-size: var(--primary-md);
+  font-weight: var(--primary-semi-bold-600);
+}
+h4 {
+  font-size: var(--primary-sl);
+  font-weight: var(--primary-semi-bold-600);
+}
+h5 {
+  font-size: var(--primary-xsl);
+  font-weight: var(--primary-semi-bold-600);
+}
+h6 {
+  font-size: var(--primary-XXL);
+  font-weight: var(--primary-semi-bold-600);
+}
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
