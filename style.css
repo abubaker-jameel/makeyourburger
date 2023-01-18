@@ -33,7 +33,7 @@
   --primary-14: 0.875;
   --primary-12: 0.75;
 
-  /* Fonts Weight */
+  /* Fonts Weights*/
   --primary-regular-400: 400;
   --primary-semi-bold-600: 600;
   --primary-bold-700: 700;
@@ -48,4 +48,52 @@
   --size-32: 2rem;
   --size-26: 1.625rem;
   --size-12: 0.75rem;
+}
+
+/* Box sizing rules and removing default margin and padding */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
