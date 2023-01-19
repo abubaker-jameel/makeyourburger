@@ -122,3 +122,74 @@ h6 {
   font-size: var(--primary-XXL);
   font-weight: var(--primary-semi-bold-600);
 }
+
+/* Component Classes */
+
+/* buttons */
+.btn {
+  border: transparent;
+  cursor: pointer;
+}
+.btn__circle--md {
+  width: 48px;
+  height: 48px;
+  border-radius: 100%;
+}
+.btn__circle--sm {
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+}
+.btn__circle--xs {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+.btn--md {
+  background-color: rebeccapurple;
+  padding: 1em 1.5em;
+  border-radius: 100px;
+}
+.btn--sm {
+  background-color: rebeccapurple;
+  padding: 0.7em 1.2em;
+  border-radius: 100px;
+}
+.btn--xs {
+  background-color: rebeccapurple;
+  padding: 0.5em 1em;
+  border-radius: 100px;
+}
+.btn--primary {
+  background-color: var(--primary-indigo);
+}
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background-color: var(--indigo-600);
+}
+.btn--ghost {
+  background-color: var(--primary-titan-white);
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background-color: var(--primary-indigo);
+}
+.btn--red {
+  background-color: var(--red-200);
+}
+.btn--red:hover,
+.btn:focus-visible {
+  background-color: var(--primary-danger);
+}
+.btn--hero {
+  border-radius: 100%;
+  width: 180px;
+  height: 180px;
+  background-color: var(--primary-indigo);
+}
+.btn--hero:hover,
+.btn--hero:focus-visible {
+  width: 220px;
+  height: 220px;
+  background-color: var(--indigo-600);
+}
