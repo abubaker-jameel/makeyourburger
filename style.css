@@ -193,3 +193,49 @@ h6 {
   height: 220px;
   background-color: var(--indigo-600);
 }
+
+/* fonts */
+
+.font-72 {
+  font-size: var(--primary-xlg);
+}
+.font-48 {
+  font-size: var(--primary-lg);
+}
+.font-36 {
+  font-size: var(--primary-md);
+}
+.font-24 {
+  font-size: var(--primary-sl);
+}
+.font-20 {
+  font-size: var(--primary-xsl);
+}
+.font-16 {
+  font-size: var(--primary-XXL);
+}
+.font-14 {
+  font-size: var(--primary-14);
+}
+.font-12 {
+  font-size: var(--primary-12);
+}
+.capitalize {
+  text-transform: capitalize;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+
+.regular {
+  font-weight: var(--primary-regular-400);
+}
+.semi-bold {
+  font-weight: var(--primary-semi-bold-600);
+}
+.bold {
+  font-weight: var(--primary-bold-700);
+}
+.extra-bold {
+  font-weight: var(--primary-extra-bold-800);
+}
