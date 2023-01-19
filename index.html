@@ -6,11 +6,44 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/903751fbe8.js" crossorigin="anonymous"></script>
   <title>Burger Website</title>
 </head>
 
 <body>
-  <div id="app"></div>
+  <header class="container">
+    <div class="nav__wrapper">
+      <div class="left__navbar">
+        <span class="logo circle font-24 bold">a</span>
+        <ul class="nav__list">
+          <li><a class="font-16 regular" href="#/">discover</a></li>
+          <li><a href="#/makeyourburger">make your burger</a></li>
+        </ul>
+      </div>
+      <div class="right__navbar">
+        <button class="btn btn--xs btn--red"><i class="fa-solid fa-phone"></i> call me back</button>
+        <span class="phone__no font-16 semi-bold">8 800 437-87-22</span>
+        <div class="drop__down--avatar">
+          <img src="./assests/avatar.svg" alt="avatar-dropdown">
+        </div>
+        <div class="drop__down--menu">
+          <button class="btn circle" id="btn__toggle"><i class="fa-solid fa-bars"></i></button>
+          <!-- <button class="btn circle"><i class="fa-solid fa-xmark"></i></button> -->
+        </div>
+      </div>
+    </div>
+    <div class="toggle__navbar">
+      <span class="font-16 semi-bold">8 800 437-87-22</span>
+      <ul class="toggle--nav__list">
+        <li><a class="font-16 regular" href="#/">discover</a></li>
+        <li><a href="#/makeyourburger">make your burger</a></li>
+      </ul>
+      <div class="customer">
+        <img src="./assests/avatar.svg" alt="avatar-dropdown">
+        <h6 class="font-16 semi-bold">Anthony Thomas</h6>
+      </div>
+    </div>
+  </header>
 
   <script type="module" src="/main.js"></script>
 </body>
