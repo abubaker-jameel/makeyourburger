@@ -30,8 +30,8 @@
   --primary-sl: 1.5rem;
   --primary-xsl: 1.25rem;
   --primary-XXL: 1rem;
-  --primary-14: 0.875;
-  --primary-12: 0.75;
+  --primary-14: 0.875rem;
+  --primary-12: 0.75rem;
 
   /* Fonts Weights*/
   --primary-regular-400: 400;
@@ -377,4 +377,40 @@ h6 {
   .left__navbar {
     gap: 50px;
   }
-} ;
+}
+
+.even-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.left__footer > ul {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.left__footer > ul > li {
+}
+
+.left__footer > ul > li:nth-child(1) {
+  text-transform: capitalize;
+  color: var(--primary-muted);
+}
+.left__footer > ul > li:not(:first-child) {
+  text-transform: capitalize;
+  color: var(--primary-indigo);
+}
+
+.right__footer > ul {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+
+.border__right {
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background-color: var(--primary-muted);
+}
