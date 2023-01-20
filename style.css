@@ -243,7 +243,7 @@ h6 {
   font-weight: var(--primary-extra-bold-800);
 }
 
-// paddings block
+/* paddings block */
 
 .padding-block-32 {
   padding-block: var(--size-32);
@@ -256,6 +256,15 @@ h6 {
 }
 .padding-top-32 {
   padding-top: var(--size-32);
+}
+.padding-bottom-32 {
+  padding-bottom: var(--size-32);
+}
+.padding-bottom-26 {
+  padding-bottom: var(--size-26);
+}
+.padding-top-12 {
+  padding-top: var(--size-12);
 }
 .container {
   width: min(1544px, 100% - 1em);
@@ -389,8 +398,6 @@ h6 {
   align-items: center;
   gap: 10px;
 }
-.left__footer > ul > li {
-}
 
 .left__footer > ul > li:nth-child(1) {
   text-transform: capitalize;
@@ -413,4 +420,14 @@ h6 {
   width: 1px;
   height: 10px;
   background-color: var(--primary-muted);
+}
+
+.title {
+  width: 5ch;
+  display: flex;
+  align-items: center;
+}
+.title > h1 {
+  text-transform: capitalize;
+  line-height: 1;
 }
