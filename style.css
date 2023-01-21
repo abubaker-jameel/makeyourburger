@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;500&family=Open+Sans:wght@400;600;700;800&display=swap");
+
 :root {
   /* Colors */
   /* primary-colors */
@@ -424,10 +426,49 @@ h6 {
 
 .title {
   width: 5ch;
-  display: flex;
-  align-items: center;
 }
 .title > h1 {
+  font-size: clamp(
+    var(--primary-lg),
+    calc(2.61rem + 1.97vw),
+    var(--primary-xlg)
+  );
   text-transform: capitalize;
   line-height: 1;
+}
+
+.main__hero--grid {
+  display: grid;
+  grid-template: 48.5em / repeat(2, 1fr);
+  align-items: center;
+}
+
+.hero__paragraph--mob {
+  display: none;
+}
+.hero__burger--mob {
+  display: none;
+}
+
+@media (max-width: 50em) {
+  .left__footer,
+  .right__footer {
+    display: none;
+  }
+  .title {
+    width: 100%;
+  }
+  .main__hero--grid {
+    grid-template: auto / 1fr;
+    place-items: center;
+  }
+  .hero__paragraph--mob {
+    display: block;
+  }
+  .hero__burger {
+    display: none;
+  }
+  .hero__burger--mob {
+    display: inline-block;
+  }
 }
