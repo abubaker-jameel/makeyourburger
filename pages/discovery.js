@@ -1,7 +1,7 @@
 import view from "../utils/view.js"
 
 export default function Discovery() {
-    view.innerHTML = `
+  view.innerHTML = `
     <div class="main__hero--grid">
       <div class="title">
         <h1>make your burger</h1>
