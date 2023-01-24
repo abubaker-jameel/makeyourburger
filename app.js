@@ -11,7 +11,6 @@ class App {
         new RouterHandler();
         this.handleEventListeners()
     }
-
     handleEventListeners() {
         document.body.addEventListener('click', event => {
             this.handleNavToggle(event)
