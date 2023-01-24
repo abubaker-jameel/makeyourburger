@@ -357,8 +357,11 @@ h6 {
   border-bottom: 2px solid var(--primary-indigo);
   padding-bottom: 5px;
 }
-.toggle__navbar {
+.hide {
   display: none;
+}
+.show {
+  display: flex;
 }
 
 @media (max-width: 50em) {
@@ -375,8 +378,6 @@ h6 {
     display: none;
   }
   .toggle__navbar {
-    display: none;
-    /* display: flex; */
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -395,6 +396,9 @@ h6 {
   }
   .customer > h6 {
     margin-top: 1em;
+  }
+  .fa-solid {
+    display: none;
   }
 }
 
