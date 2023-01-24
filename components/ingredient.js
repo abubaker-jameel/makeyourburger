@@ -8,11 +8,10 @@ export default function Ingredient(item) {
         <span class="padding-block-12 font-14 semi-bold capitalize">${item.name}</span>
         <div class="item__quantity">
           <button class="btn btn__circle--sm btn--ghost"><i class="fa-solid fa-plus"></i></button>
-          <span>2</span>
+          <span class="value">0</span>
           <button class="btn btn__circle--sm btn--ghost"><i class="fa-solid fa-minus"></i></button>
         </div>
       </div>
-    `
+      `
   )
-
 }
