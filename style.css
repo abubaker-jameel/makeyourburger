@@ -329,7 +329,16 @@ h6 {
   border-bottom: 2px solid var(--primary-indigo);
   padding-bottom: 5px;
 }
-
+.nav__list > li > a::after {
+  content: "";
+  display: block;
+  font-weight: var(--primary-semi-bold-600);
+  border-bottom: 2px solid var(--primary-indigo);
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+}
 .right__navbar {
   flex: 1 1 27.5em;
   display: flex;
