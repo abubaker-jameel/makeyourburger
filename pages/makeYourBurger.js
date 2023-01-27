@@ -4,10 +4,11 @@ import data from '../utils/data.js'
 import renderIngredientsData from '../utils/renderIngredientsData'
 
 export default function MakeYourBurger() {
-  const renderIngredientsArray = []
   const items = data.map((item) => Ingredient(item))
 
 
+
+  // const renderIngredientImages = renderIngredientsArray.map(image => RenderIngredient(image.img))
   view.innerHTML = `
  <div class="main__burger--grid">
       <div class="title">
@@ -18,7 +19,6 @@ export default function MakeYourBurger() {
           <img class="bun" src="/assests/items/bun_bottom.svg" alt="bun">
         </div>
       </div>
-
       <div class="summary">
         <h3 class="padding-bottom-26">Summary</h3>
         <span class="divider"></span>
@@ -49,11 +49,16 @@ export default function MakeYourBurger() {
   const $increments = document.querySelectorAll('.fa-plus')
   const $decrements = document.querySelectorAll('.fa-minus')
   const $value = document.querySelectorAll('.value')
+  const $burgerItems = document.querySelector('.burger--items')
 
   for (let i = 0; i < $increments.length; i++) {
     let btnIncrement = $increments[i].parentElement
     let btnDecrement = $decrements[i].parentElement
 
+    if ($value[i].innerText == 0) {
+      const btnDecrement = $decrements[i].parentElement
+      btnDecrement.disabled = true
+    }
     btnIncrement.addEventListener('click', () => handleIncrement(Event, i))
 
     btnDecrement.addEventListener('click', () => handleDecrement(Event, i))
@@ -61,37 +66,62 @@ export default function MakeYourBurger() {
 
   function handleIncrement(Event, i) {
     const valueIncrement = $value[i]
+
     valueIncrement.innerText = parseInt(valueIncrement.innerText) + 1
 
-    if (valueIncrement.innerText > 2) {
-      valueIncrement.innerText = 2
+    if (valueIncrement.innerText == 2) {
+      const btnIncrement = $increments[i].parentElement
+      btnIncrement.disabled = true
+    }
+    if (valueIncrement.innerText == 1) {
+      const btnDecrement = $decrements[i].parentElement
+      btnDecrement.disabled = false
+    }
+    const $bunElement = $burgerItems.firstElementChild
+    const firstElementPosition = $burgerItems.getBoundingClientRect().top
+    console.log(firstElementPosition)
+
+    if (valueIncrement.innerText == 1) {
+      const $burgerIngredient = document.createElement('img')
+      $burgerIngredient.src = `${renderIngredientsData[i].img}`
+      $burgerIngredient.id = `${renderIngredientsData[i].id}_01`
+      const className = `${renderIngredientsData[i].class}_01`
+      $burgerIngredient.classList.add(className)
+      $burgerItems.prepend($burgerIngredient)
+
+    }
+    if (valueIncrement.innerText == 2) {
+      const $burgerIngredient = document.createElement('img')
+      $burgerIngredient.src = `${renderIngredientsData[i].img}`
+      $burgerIngredient.id = `${renderIngredientsData[i].id}_02`
+      const className = `${renderIngredientsData[i].class}_02`
+      $burgerIngredient.classList.add(className)
+      $burgerItems.prepend($burgerIngredient)
     }
 
-    const filterIngredients = renderIngredientsArray.filter(ingredient => ingredient.img === renderIngredientsData[i].img)
-    console.log(filterIngredients)
-
-    if (filterIngredients.length < 2) {
-      renderIngredientsArray.push(renderIngredientsData[i])
-      console.log(renderIngredientsArray)
-    }
   }
 
   function handleDecrement(Event, i) {
     const valueDecrement = $value[i]
-    valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
-    if (valueDecrement.innerText < 0) {
-      valueDecrement.innerText = 0
-    }
-    const filterIngredients = renderIngredientsArray.filter(ingredient => ingredient === renderIngredientsData[i].img)
 
-    function isIngredient() {
-      return filterIngredients.includes(renderIngredientsData[i].img)
+    if (valueDecrement.innerText == 2) {
+      const itemId = `#${renderIngredientsData[i].id}_02`
+      const $burgerItemsId = document.querySelector(itemId)
+      $burgerItemsId.remove()
+    } else if (valueDecrement.innerText == 1) {
+      const itemId = `#${renderIngredientsData[i].id}_01`
+      const $burgerItemsId = document.querySelector(itemId)
+      $burgerItemsId.remove()
     }
-    console.log(isIngredient())
-    if (isIngredient()) {
-      const lastIndexOfIngredient = renderIngredientsArray.lastIndexOf(renderIngredientsData[i].img)
-      renderIngredientsArray.splice(lastIndexOfIngredient, 1)
-      console.log(renderIngredientsArray)
+    valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
+    if (valueDecrement.innerText == 0) {
+      const btnDecrement = $decrements[i].parentElement
+      btnDecrement.disabled = true
+    }
+
+    if (valueDecrement.innerText < 2) {
+      const btnIncrement = $increments[i].parentElement
+      btnIncrement.disabled = false
     }
   }
 }

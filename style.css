@@ -78,6 +78,9 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   font-family: "Open Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* A elements that don't have a class get default styles */
@@ -175,7 +178,11 @@ h6 {
 }
 .btn--ghost:hover,
 .btn--ghost:focus-visible {
-  background-color: var(--primary-indigo);
+  background-color: var(--primary-danger);
+}
+.btn--ghost:disabled {
+  background-color: var(--red-300);
+  cursor: not-allowed;
 }
 .btn--red {
   background-color: var(--red-200);
@@ -532,6 +539,31 @@ h6 {
   width: 350px;
 }
 
+.burger--items img {
+  display: block;
+  width: 100%;
+}
+
+.cutlet_01,
+.cutlet_02,
+.mayo_01,
+.mayo_02,
+.onion_01,
+.onion_02,
+.tomatoe_01,
+.tomatoe_02,
+.cucumber_01,
+.cucumber_02,
+.cheese_01,
+.cheese_02,
+.salad_01,
+.salad_02,
+.bun_top_01,
+.bun_top_02 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
 .total > h3 {
   color: var(--primary-indigo);
 }

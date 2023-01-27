@@ -1,25 +1,41 @@
 export default [{
-        img: '../assests/renderItems/cutlet.svg'
+        img: '../assests/renderItems/cutlet.svg',
+        id: 'cutlet',
+        class: 'cutlet'
     },
     {
-        img: '../assests/renderItems/mayo.svg'
+        img: '../assests/renderItems/mayo.svg',
+        id: 'mayo',
+        class: 'mayo'
     },
     {
-        img: '../assests/renderItems/onion.svg'
+        img: '../assests/renderItems/onion.svg',
+        id: 'onion',
+        class: 'onion'
     },
     {
-        img: '../assests/renderItems/tomatoe.svg'
+        img: '../assests/renderItems/tomatoe.svg',
+        id: 'tomatoe',
+        class: 'tomatoe'
     },
     {
-        img: '../assests/renderItems/cucumber.svg'
+        img: '../assests/renderItems/cucumber.svg',
+        id: 'cucumber',
+        class: 'cucumber'
     },
     {
-        img: '../assests/renderItems/cheese.svg'
+        img: '../assests/renderItems/cheese.svg',
+        id: 'cheese',
+        class: 'cheese'
     },
     {
-        img: '../assests/renderItems/salad.svg'
+        img: '../assests/renderItems/salad.svg',
+        id: 'salad',
+        class: 'salad'
     },
     {
-        img: '../assests/renderItems/bun_top.svg'
+        img: '../assests/renderItems/bun_top.svg',
+        id: 'bun_top',
+        class: 'bun_top'
     },
 ]
