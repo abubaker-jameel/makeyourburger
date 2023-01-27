@@ -34,6 +34,7 @@ class App {
             this.$faXmark.style.display = 'none'
         }
     }
+
 }
 
 new App();
