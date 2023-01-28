@@ -201,7 +201,6 @@ h6 {
   padding: 0 0.1em;
   aspect-ratio: 1;
   background-color: var(--primary-indigo);
-  color: var(--primary-white);
   text-justify: distribute;
   line-height: 1.2;
   letter-spacing: 3px;
@@ -210,6 +209,10 @@ h6 {
   justify-content: center;
   align-items: center;
   transition: all 400ms cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+.btn--hero > span > a {
+  color: var(--primary-white);
+  text-decoration: none;
 }
 .btn--hero:hover,
 .btn--hero:focus-visible {
