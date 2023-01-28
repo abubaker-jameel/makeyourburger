@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,19 +24,8 @@
       <div class="right__navbar">
         <button class="btn btn--xs btn--red"><i class="fa-solid fa-phone"></i> call me back</button>
         <span class="phone__no font-16 semi-bold">8 800 437-87-22</span>
-        <div class="avatar">
+        <div class="drop__down--avatar">
           <img src="./assests/avatar.svg" alt="avatar-dropdown">
-          <div class="avatar__drop--down arrow">
-            <div class="drop__down">
-              <h6>Jerome Porter</h6>
-              <span class="divider"></span>
-              <ul role="list" class="drop__down--list">
-                <li>Profile</li>
-                <li>Settings</li>
-                <li>Log out</li>
-              </ul>
-            </div>
-          </div>
         </div>
         <div class="drop__down--menu">
           <button class="btn circle" id="btn__toggle"><i class="fa-solid fa-bars"></i>
