@@ -10,8 +10,8 @@ export default function MakeYourBurger() {
 
   // const renderIngredientImages = renderIngredientsArray.map(image => RenderIngredient(image.img))
   view.innerHTML = `
- <div class="main__burger--grid">
-      <div class="title">
+  <div class="main__burger--grid">
+      <div class="title__screen--02">
         <h1>Make Your Burger</h1>
       </div>
       <div class="burger__items--container">
@@ -29,22 +29,22 @@ export default function MakeYourBurger() {
         <div class="summary__main">
           <div class="summary__time">
             <img class="summary__icon--time" src="./assests/Summary-icon-time.png" alt="time">
-            <span class="font-14 semi-bold">7 min</span>
+            <span class="font-14 semi-bold time">7 min</span>
           </div>
           <div class="summary__weight">
             <img class="summary__icon--weight" src="./assests/Summary-icon-weight.png" alt="weight">
-            <span class="font-14 semi-bold">20 oz</span>
+            <span class="font-14 semi-bold weight">20 oz</span>
           </div>
           <div class="summary__energy">
             <img class="summary__icon--time" src="./assests/Summary-icon-energy.png" alt="energy">
-            <span class="font-14 semi-bold">429 kcal</span>
+            <span class="font-14 semi-bold energy">429 kcal</span>
           </div>
         </div>
       </div>
     </div>
     <div class = "main__ingredients--grid padding-block-32" >
         ${items.join('')}
-</div>
+  </div>
 `
   const $increments = document.querySelectorAll('.fa-plus')
   const $decrements = document.querySelectorAll('.fa-minus')
