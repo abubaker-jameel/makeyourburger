@@ -3,7 +3,7 @@ import view from "../utils/view.js"
 export default function Discovery() {
   view.innerHTML = `
     <div class="main__hero--grid">
-      <div class="title">
+      <div class="title__screen--01">
         <h1>make your burger</h1>
       </div>
       <p class="hero__paragraph--mob font-20 regular">Parallax screen. Burger ingredients and emojis moving
