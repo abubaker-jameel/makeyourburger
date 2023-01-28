@@ -383,6 +383,61 @@ h6 {
   display: inline-block;
   flex: 0 1 140px;
 }
+.avatar {
+  position: relative;
+}
+.avatar__drop--down {
+  width: 209px;
+  height: 195px;
+  box-shadow: 0px 0px 30px -22px rgba(0, 0, 0, 0.51);
+  border-radius: 15px;
+  position: absolute;
+  right: -10px;
+  top: 60px;
+  z-index: 9999;
+  background-color: var(--primary-white);
+}
+.drop__down {
+  padding: 20px;
+}
+.arrow::before {
+  content: " ";
+  position: absolute;
+  right: 30px;
+  top: -10px;
+  border-top: none;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid var(--primary-white);
+}
+.drop__down > h6 {
+  margin-bottom: var(--size-12);
+}
+.drop__down--list {
+  margin-top: 5px;
+}
+.drop__down--list > li {
+  font-size: var(--primary-14);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  text-indent: 10px;
+}
+.drop__down--list > li:not(:last-child) {
+  color: var(--primary-black);
+}
+.drop__down--list > li:last-child {
+  color: var(--primary-danger);
+}
+.drop__down--list > li:hover {
+  background-color: var(--primary-titan-white);
+  border-radius: 8px;
+  font-weight: var(--primary-semi-bold-600);
+}
+.avatar__drop--down {
+  display: none;
+}
+
 @media (max-width: 65em) {
   .left__navbar,
   .right__navbar {
@@ -396,7 +451,7 @@ h6 {
   }
 }
 @media (max-width: 50em) {
-  .drop__down--avatar {
+  .avatar {
     display: none;
   }
   .drop__down--menu {

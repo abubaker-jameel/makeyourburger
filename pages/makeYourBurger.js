@@ -23,7 +23,7 @@ export default function MakeYourBurger() {
         <h3 class="padding-bottom-26">Summary</h3>
         <span class="divider"></span>
         <div class="total padding-block-26">
-          <h3 class="font-36 extra-bold">$12.31</h3>
+          <h3 class="font-36 extra-bold price">$0</h3>
           <button class="btn btn--checkout font-16 semi-bold">Checkout</button>
         </div>
         <div class="summary__main">
@@ -66,6 +66,9 @@ export default function MakeYourBurger() {
 
   function handleIncrement(Event, i) {
     const valueIncrement = $value[i]
+    const $price = document.querySelector('.price')
+    const priceValue = $price.innerText.replace('$', '')
+    // console.log(priceValue)
 
     valueIncrement.innerText = parseInt(valueIncrement.innerText) + 1
 
@@ -88,6 +91,8 @@ export default function MakeYourBurger() {
       const className = `${renderIngredientsData[i].class}_01`
       $burgerIngredient.classList.add(className)
       $burgerItems.prepend($burgerIngredient)
+      const totalPrice = `$${parseInt(priceValue) + data[i].price}`
+      $price.innerText = totalPrice
 
     }
     if (valueIncrement.innerText == 2) {
@@ -97,21 +102,29 @@ export default function MakeYourBurger() {
       const className = `${renderIngredientsData[i].class}_02`
       $burgerIngredient.classList.add(className)
       $burgerItems.prepend($burgerIngredient)
+      const totalPrice = `$${parseInt(priceValue) + data[i].price}`
+      $price.innerText = totalPrice
     }
 
   }
 
   function handleDecrement(Event, i) {
     const valueDecrement = $value[i]
+    const $price = document.querySelector('.price')
+    const priceValue = $price.innerText.replace('$', '')
 
     if (valueDecrement.innerText == 2) {
       const itemId = `#${renderIngredientsData[i].id}_02`
       const $burgerItemsId = document.querySelector(itemId)
       $burgerItemsId.remove()
+      const totalPrice = `$${parseInt(priceValue) - data[i].price}`
+      $price.innerText = totalPrice
     } else if (valueDecrement.innerText == 1) {
       const itemId = `#${renderIngredientsData[i].id}_01`
       const $burgerItemsId = document.querySelector(itemId)
       $burgerItemsId.remove()
+      const totalPrice = `$${parseInt(priceValue) - data[i].price}`
+      $price.innerText = totalPrice
     }
     valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
     if (valueDecrement.innerText == 0) {

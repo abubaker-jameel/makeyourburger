@@ -15,6 +15,9 @@ class App {
         document.body.addEventListener('click', event => {
             this.handleNavToggle(event)
         })
+        const $avatar = document.querySelector('.avatar')
+        $avatar.addEventListener('mouseover', this.handleHoverAvatarOver)
+        $avatar.addEventListener('mouseout', this.handleHoverAvatarOut)
     }
 
     handleNavToggle(event) {
@@ -33,6 +36,14 @@ class App {
             this.$faBars.style.display = 'block'
             this.$faXmark.style.display = 'none'
         }
+    }
+    handleHoverAvatarOver() {
+        const $avatarDropDown = document.querySelector('.avatar__drop--down')
+        $avatarDropDown.style.display = 'block'
+    }
+    handleHoverAvatarOut() {
+        const $avatarDropDown = document.querySelector('.avatar__drop--down')
+        $avatarDropDown.style.display = 'none'
     }
 
 }
