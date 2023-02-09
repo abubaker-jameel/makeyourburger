@@ -19,7 +19,13 @@ export default function MakeYourBurger() {
           <img class="bun burger--item" src="/assests/items/bun_bottom.svg" alt="bun">
         </div>
         <div class="warning__alert hide">
-          <p>Warning! Please remove the previous burger item first.</p>
+          <p>Please remove the previous burger item first.</p>
+        </div>
+        <div class="warning__alert hide">
+          <p>Please atleast add 5 burger items before adding bun.</p>
+        </div>
+        <div class="warning__alert hide">
+          <p>You cannot add the items after bun item.</p>
         </div>
       </div>
       <div class="summary">
@@ -69,10 +75,30 @@ export default function MakeYourBurger() {
   }
 
   function handleIncrement(Event, i) {
+    const firstElementOfBurgerItems = $burgerItems.firstElementChild
+    const allBurgerItems = $burgerItems.children
+    const allBurgerItemsArray = [...allBurgerItems]
     const valueIncrement = $value[i]
     const $price = document.querySelector('.price')
     const priceValue = $price.innerText.replace('$', '')
-    valueIncrement.innerText = parseInt(valueIncrement.innerText) + 1
+    const bunElement = valueIncrement.parentElement.parentElement.firstElementChild.firstElementChild
+
+    if (allBurgerItemsArray.length < 6 && (bunElement.getAttribute('alt') === 'Bun')) {
+      valueIncrement.innerText = parseInt(valueIncrement.innerText)
+      document.querySelectorAll('.warning__alert')[1].classList.remove('hide')
+      setTimeout(() => {
+        document.querySelectorAll('.warning__alert')[1].classList.add('hide')
+      }, 2000)
+    } else if (firstElementOfBurgerItems.classList.contains('bun_top_01')) {
+      valueIncrement.innerText = parseInt(valueIncrement.innerText)
+      document.querySelectorAll('.warning__alert')[2].classList.remove('hide')
+      setTimeout(() => {
+        document.querySelectorAll('.warning__alert')[2].classList.add('hide')
+      }, 2000)
+    } else {
+      valueIncrement.innerText = parseInt(valueIncrement.innerText) + 1
+    }
+
 
     if (valueIncrement.innerText == 2) {
       const btnIncrement = $increments[i].parentElement
@@ -83,10 +109,12 @@ export default function MakeYourBurger() {
       btnDecrement.disabled = false
     }
 
-    if (valueIncrement.innerText == 1) {
+    if ((valueIncrement.innerText == 1) && (bunElement.getAttribute('alt') === 'Bun')) {
+      const btnIncrement = $increments[i].parentElement
+      btnIncrement.disabled = true
+    }
 
-      const allBurgerItems = $burgerItems.children
-      const allBurgerItemsArray = [...allBurgerItems]
+    if (valueIncrement.innerText == 1 && !firstElementOfBurgerItems.classList.contains('bun_top_01')) {
       const $burgerIngredient = document.createElement('img')
       $burgerIngredient.src = `${renderIngredientsData[i].img}`
       $burgerIngredient.id = `${renderIngredientsData[i].id}_01`
@@ -100,6 +128,8 @@ export default function MakeYourBurger() {
       const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
       const positionTop = $(firstElementOfBurgerItemsSibling).position().top
       console.log(positionTop)
+
+
       if ($(firstElementOfBurgerItemsSibling).hasClass('cutlet_01') || $(firstElementOfBurgerItemsSibling).hasClass('cutlet_02')) {
         if ($($burgerIngredient).hasClass('mayo_01')) {
           $($burgerIngredient).css({
@@ -239,7 +269,7 @@ export default function MakeYourBurger() {
         if ($($burgerIngredient).hasClass('cutlet_01')) {
           $($burgerIngredient).css({
             'top': `${positionTop - 15}px`,
-            'z-index': `${allBurgerItemsArray.length}`
+            'z-index': `${allBurgerItemsArray.length}`,
           })
           console.log('cutlet_01')
         } else if ($($burgerIngredient).hasClass('onion_01')) {
@@ -432,7 +462,7 @@ export default function MakeYourBurger() {
       const firstElementOfBurgerItems = $burgerItems.firstElementChild
       const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
       const positionTop = $(firstElementOfBurgerItemsSibling).position().top
-      console.log(positionTop)
+
       if ($(firstElementOfBurgerItemsSibling).hasClass('cutlet_01') || $(firstElementOfBurgerItemsSibling).hasClass('cutlet_02')) {
         if ($($burgerIngredient).hasClass('mayo_02')) {
           $($burgerIngredient).css({
@@ -713,24 +743,872 @@ export default function MakeYourBurger() {
     const priceValue = $price.innerText.replace('$', '')
     const lastElementOfBurgerItem = document.querySelector('.burger--items').firstElementChild
 
-    if (valueDecrement.innerText == 2 && lastElementOfBurgerItem.classList.contains(`${renderIngredientsData[i].class}_02`)) {
+    if (valueDecrement.innerText == 2) {
       const itemId = `#${renderIngredientsData[i].id}_02`
       const $burgerItemsId = document.querySelector(itemId)
+      const prevAllBurgerItems = $($burgerItemsId).prevAll()
+
       $burgerItemsId.remove()
       const totalPrice = `$${parseInt(priceValue) - data[i].price}`
       $price.innerText = totalPrice
       valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
-    } else if (valueDecrement.innerText == 1 && lastElementOfBurgerItem.classList.contains(`${renderIngredientsData[i].class}_01`)) {
+
+      if ($($burgerItemsId).hasClass('cutlet_02')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('mayo_02')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+
+      if ($($burgerItemsId).hasClass('onion_02')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('tomatoe_02')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('cucumber_02')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('cheese_02')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 18}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('salad_02')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+
+    } else if (valueDecrement.innerText == 1) {
       const itemId = `#${renderIngredientsData[i].id}_01`
       const $burgerItemsId = document.querySelector(itemId)
+      const prevAllBurgerItems = $($burgerItemsId).prevAll()
+
+      if ($($burgerItemsId).hasClass('cutlet_01')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 55}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('mayo_01')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 20}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+
+      if ($($burgerItemsId).hasClass('onion_01')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('tomatoe_01')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 45}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('cucumber_01')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 40}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('cheese_01')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 10}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 18}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
+      if ($($burgerItemsId).hasClass('salad_01')) {
+
+        for (let item = 0; item < prevAllBurgerItems.length; item++) {
+          const previousItem = prevAllBurgerItems[item]
+          const previousItemPosition = $(previousItem).position().top
+          const previousItemZindex = $(previousItem).css('z-index')
+          console.log(previousItem, previousItemZindex)
+
+          if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+
+          if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('onion_01')
+          }
+          if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('tomatoe_01')
+          }
+          if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cucumber_01')
+          }
+          if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('cheese_01')
+          }
+          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('salad_01')
+          }
+          if ($(previousItem).hasClass('bun_top_01')) {
+            $(previousItem).css({
+              'top': `${previousItemPosition + 30}px`,
+              'z-index': `${previousItemZindex - 1}`
+            })
+            console.log('bun_01')
+          }
+        }
+      }
       $burgerItemsId.remove()
       const totalPrice = `$${parseInt(priceValue) - data[i].price}`
       $price.innerText = totalPrice
       valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
     } else {
-      document.querySelector('.warning__alert').classList.remove('hide')
+      document.querySelectorAll('.warning__alert')[0].classList.remove('hide')
       setTimeout(() => {
-        document.querySelector('.warning__alert').classList.add('hide')
+        document.querySelectorAll('.warning__alert')[0].classList.add('hide')
       }, 2000)
     }
 

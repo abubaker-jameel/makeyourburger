@@ -636,6 +636,13 @@ h6 {
   width: 100%;
 }
 
+@keyframes topToBottom {
+  from {
+    top: -1000px;
+    opacity: 0;
+  }
+}
+
 .cutlet_01,
 .cutlet_02,
 .mayo_01,
@@ -655,7 +662,8 @@ h6 {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
-  transition: all linear 0.5s;
+  animation: topToBottom ease-in-out 0.5s;
+  transition: all ease-out 0.2s;
 }
 
 .cutlet_01,
