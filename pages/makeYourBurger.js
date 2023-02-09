@@ -216,7 +216,7 @@ export default function MakeYourBurger() {
           })
         } else if ($($burgerIngredient).hasClass('mayo_01')) {
           $($burgerIngredient).css({
-            'top': `${positionTop + 75}px`,
+            'top': `${positionTop + 65}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
         } else if ($($burgerIngredient).hasClass('tomatoe_01')) {
@@ -502,7 +502,7 @@ export default function MakeYourBurger() {
           })
         } else if ($($burgerIngredient).hasClass('mayo_02')) {
           $($burgerIngredient).css({
-            'top': `${positionTop + 75}px`,
+            'top': `${positionTop + 65}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
         } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
@@ -765,37 +765,37 @@ export default function MakeYourBurger() {
 
           if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 20}px`,
+              'top': `${previousItemPosition + 10}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
           if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 20}px`,
+              'top': `${previousItemPosition + 10}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
           if ($(previousItem).hasClass('tomatoe_01') || $(previousItem).hasClass('tomatoe_02')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 20}px`,
+              'top': `${previousItemPosition + 10}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
           if ($(previousItem).hasClass('cucumber_01') || $(previousItem).hasClass('cucumber_02')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 20}px`,
+              'top': `${previousItemPosition + 10}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
           if ($(previousItem).hasClass('cheese_01') || $(previousItem).hasClass('cheese_02')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 20}px`,
+              'top': `${previousItemPosition + 10}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
           if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 20}px`,
+              'top': `${previousItemPosition + 10}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
