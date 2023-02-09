@@ -18,6 +18,9 @@ export default function MakeYourBurger() {
         <div class="burger--items">
           <img class="bun burger--item" src="/assests/items/bun_bottom.svg" alt="bun">
         </div>
+        <div class="warning__alert hide">
+          <p>Warning! Please remove the previous burger item first.</p>
+        </div>
       </div>
       <div class="summary">
         <h3 class="padding-bottom-26">Summary</h3>
@@ -82,9 +85,8 @@ export default function MakeYourBurger() {
 
     if (valueIncrement.innerText == 1) {
 
-
       const allBurgerItems = $burgerItems.children
-      const allBurgerItemsArray = [...$burgerItems.children]
+      const allBurgerItemsArray = [...allBurgerItems]
       const $burgerIngredient = document.createElement('img')
       $burgerIngredient.src = `${renderIngredientsData[i].img}`
       $burgerIngredient.id = `${renderIngredientsData[i].id}_01`
@@ -414,10 +416,8 @@ export default function MakeYourBurger() {
           console.log('bun_01')
         }
       }
-
-
-
     }
+
     if (valueIncrement.innerText == 2) {
       const allBurgerItemsArray = [...$burgerItems.children]
       const $burgerIngredient = document.createElement('img')
@@ -464,11 +464,6 @@ export default function MakeYourBurger() {
             'top': `${positionTop - 10}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
-        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
-          $($burgerIngredient).css({
-            'top': `${positionTop - 110}px`,
-            'z-index': `${allBurgerItemsArray.length}`
-          })
         } else if ($($burgerIngredient).hasClass('cutlet_02')) {
           $($burgerIngredient).css({
             'top': `${positionTop - 55}px`,
@@ -506,11 +501,6 @@ export default function MakeYourBurger() {
         } else if ($($burgerIngredient).hasClass('salad_02')) {
           $($burgerIngredient).css({
             'top': `${positionTop - 45}px`,
-            'z-index': `${allBurgerItemsArray.length}`
-          })
-        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
-          $($burgerIngredient).css({
-            'top': `${positionTop - 135}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
         } else if ($($burgerIngredient).hasClass('mayo_02')) {
@@ -552,11 +542,6 @@ export default function MakeYourBurger() {
             'top': `${positionTop + 40}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
-        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
-          $($burgerIngredient).css({
-            'top': `${positionTop - 50}px`,
-            'z-index': `${allBurgerItemsArray.length}`
-          })
         } else if ($($burgerIngredient).hasClass('onion_02')) {
           $($burgerIngredient).css({
             'top': `${positionTop - 30}px`,
@@ -593,11 +578,6 @@ export default function MakeYourBurger() {
         } else if ($($burgerIngredient).hasClass('salad_02')) {
           $($burgerIngredient).css({
             'top': `${positionTop + 30}px`,
-            'z-index': `${allBurgerItemsArray.length}`
-          })
-        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
-          $($burgerIngredient).css({
-            'top': `${positionTop - 65}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
         } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
@@ -639,11 +619,6 @@ export default function MakeYourBurger() {
             'top': `${positionTop + 110}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
-        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
-          $($burgerIngredient).css({
-            'top': `${positionTop + 20}px`,
-            'z-index': `${allBurgerItemsArray.length}`
-          })
         } else if ($($burgerIngredient).hasClass('cucumber_02')) {
           $($burgerIngredient).css({
             'top': `${positionTop - 40}px`,
@@ -681,11 +656,6 @@ export default function MakeYourBurger() {
         } else if ($($burgerIngredient).hasClass('salad_02')) {
           $($burgerIngredient).css({
             'top': `${positionTop - 55}px`,
-            'z-index': `${allBurgerItemsArray.length}`
-          })
-        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
-          $($burgerIngredient).css({
-            'top': `${positionTop - 155}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
         } else if ($($burgerIngredient).hasClass('cheese_02')) {
@@ -726,11 +696,6 @@ export default function MakeYourBurger() {
             'top': `${positionTop + 10}px`,
             'z-index': `${allBurgerItemsArray.length}`
           })
-        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
-          $($burgerIngredient).css({
-            'top': `${positionTop - 140}px`,
-            'z-index': `${allBurgerItemsArray.length}`
-          })
         } else if ($($burgerIngredient).hasClass('salad_02')) {
           $($burgerIngredient).css({
             'top': `${positionTop - 30}px`,
@@ -763,7 +728,10 @@ export default function MakeYourBurger() {
       $price.innerText = totalPrice
       valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
     } else {
-      return
+      document.querySelector('.warning__alert').classList.remove('hide')
+      setTimeout(() => {
+        document.querySelector('.warning__alert').classList.add('hide')
+      }, 2000)
     }
 
 

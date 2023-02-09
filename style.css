@@ -376,12 +376,6 @@ h6 {
   border-bottom: 2px solid var(--primary-indigo);
   padding-bottom: 5px;
 }
-.hide {
-  display: none;
-}
-.show {
-  display: flex;
-}
 .width__btn--hero {
   display: inline-block;
   flex: 0 1 140px;
@@ -829,4 +823,18 @@ h6 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.warning__alert {
+  position: absolute;
+  background-color: var(--red-200);
+  color: var(--primary-danger);
+  padding-inline: 20px;
+  border-radius: 100vmax;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: flex;
 }
