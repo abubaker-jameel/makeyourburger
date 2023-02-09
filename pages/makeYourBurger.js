@@ -16,7 +16,7 @@ export default function MakeYourBurger() {
       </div>
       <div class="burger__items--container">
         <div class="burger--items">
-          <img class="bun" src="/assests/items/bun_bottom.svg" alt="bun">
+          <img class="bun burger--item" src="/assests/items/bun_bottom.svg" alt="bun">
         </div>
       </div>
       <div class="summary">
@@ -44,8 +44,9 @@ export default function MakeYourBurger() {
     </div>
     <div class = "main__ingredients--grid padding-block-32" >
         ${items.join('')}
-  </div>
+    </div>
 `
+
   const $increments = document.querySelectorAll('.fa-plus')
   const $decrements = document.querySelectorAll('.fa-minus')
   const $value = document.querySelectorAll('.value')
@@ -68,8 +69,6 @@ export default function MakeYourBurger() {
     const valueIncrement = $value[i]
     const $price = document.querySelector('.price')
     const priceValue = $price.innerText.replace('$', '')
-    // console.log(priceValue)
-
     valueIncrement.innerText = parseInt(valueIncrement.innerText) + 1
 
     if (valueIncrement.innerText == 2) {
@@ -80,11 +79,12 @@ export default function MakeYourBurger() {
       const btnDecrement = $decrements[i].parentElement
       btnDecrement.disabled = false
     }
-    const $bunElement = $burgerItems.firstElementChild
-    const firstElementPosition = $burgerItems.getBoundingClientRect().top
-    console.log(firstElementPosition)
 
     if (valueIncrement.innerText == 1) {
+
+
+      const allBurgerItems = $burgerItems.children
+      const allBurgerItemsArray = [...$burgerItems.children]
       const $burgerIngredient = document.createElement('img')
       $burgerIngredient.src = `${renderIngredientsData[i].img}`
       $burgerIngredient.id = `${renderIngredientsData[i].id}_01`
@@ -94,8 +94,332 @@ export default function MakeYourBurger() {
       const totalPrice = `$${parseInt(priceValue) + data[i].price}`
       $price.innerText = totalPrice
 
+      const firstElementOfBurgerItems = $burgerItems.firstElementChild
+      const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
+      const positionTop = $(firstElementOfBurgerItemsSibling).position().top
+      console.log(positionTop)
+      if ($(firstElementOfBurgerItemsSibling).hasClass('cutlet_01') || $(firstElementOfBurgerItemsSibling).hasClass('cutlet_02')) {
+        if ($($burgerIngredient).hasClass('mayo_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_01') || $($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('onion_01')
+        } else if ($($burgerIngredient).hasClass('tomatoe_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('tomatoe_01')
+        } else if ($($burgerIngredient).hasClass('cucumber_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 165}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cucumber_01')
+        } else if ($($burgerIngredient).hasClass('cheese_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 30}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cheese_01')
+        } else if ($($burgerIngredient).hasClass('salad_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('salad_01')
+        } else if ($($burgerIngredient).hasClass('bun_top_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('bun_01')
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('mayo_01') || $(firstElementOfBurgerItemsSibling).hasClass('mayo_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 85}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cutlet_01')
+        } else if ($($burgerIngredient).hasClass('onion_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 115}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('onion_01')
+        } else if ($($burgerIngredient).hasClass('tomatoe_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 115}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('tomatoe_01')
+        } else if ($($burgerIngredient).hasClass('cucumber_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 195}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cucumber_01')
+        } else if ($($burgerIngredient).hasClass('cheese_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 5}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cheese_01')
+        } else if ($($burgerIngredient).hasClass('salad_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 45}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('salad_01')
+        } else if ($($burgerIngredient).hasClass('bun_top_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 135}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('bun_01')
+        }
+      }
+
+      if ($(firstElementOfBurgerItemsSibling).hasClass('onion_01') || $(firstElementOfBurgerItemsSibling).hasClass('onion_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cutlet_01')
+        } else if ($($burgerIngredient).hasClass('mayo_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 75}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('mayo_01')
+        } else if ($($burgerIngredient).hasClass('tomatoe_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 35}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('tomatoe_01')
+        } else if ($($burgerIngredient).hasClass('cucumber_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cucumber_01')
+        } else if ($($burgerIngredient).hasClass('cheese_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cheese_01')
+        } else if ($($burgerIngredient).hasClass('salad_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 40}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('salad_01')
+        } else if ($($burgerIngredient).hasClass('bun_top_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 50}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('bun_01')
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('tomatoe_01') || $(firstElementOfBurgerItemsSibling).hasClass('tomatoe_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 15}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cutlet_01')
+        } else if ($($burgerIngredient).hasClass('onion_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 45}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('onion_01')
+        } else if ($($burgerIngredient).hasClass('mayo_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 60}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('mayo_01')
+        } else if ($($burgerIngredient).hasClass('cucumber_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 125}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cucumber_01')
+        } else if ($($burgerIngredient).hasClass('cheese_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 70}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cheese_01')
+        } else if ($($burgerIngredient).hasClass('salad_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 30}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('salad_01')
+        } else if ($($burgerIngredient).hasClass('bun_top_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 65}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('bun_01')
+        }
+      }
+
+      if ($(firstElementOfBurgerItemsSibling).hasClass('cucumber_01') || $(firstElementOfBurgerItemsSibling).hasClass('cucumber_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 70}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cutlet_01')
+        } else if ($($burgerIngredient).hasClass('onion_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 40}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('onion_01')
+        } else if ($($burgerIngredient).hasClass('mayo_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 135}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('mayo_01')
+        } else if ($($burgerIngredient).hasClass('tomatoe_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 40}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('tomatoe_01')
+        } else if ($($burgerIngredient).hasClass('cheese_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 150}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cheese_01')
+        } else if ($($burgerIngredient).hasClass('salad_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('salad_01')
+        } else if ($($burgerIngredient).hasClass('bun_top_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 20}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('bun_01')
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('cheese_01') || $(firstElementOfBurgerItemsSibling).hasClass('cheese_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 105}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cutlet_01')
+        } else if ($($burgerIngredient).hasClass('onion_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 130}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('onion_01')
+        } else if ($($burgerIngredient).hasClass('mayo_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 25}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('mayo_01')
+        } else if ($($burgerIngredient).hasClass('cucumber_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 205}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cucumber_01')
+        } else if ($($burgerIngredient).hasClass('tomatoe_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 130}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('tomatoe_01')
+        } else if ($($burgerIngredient).hasClass('salad_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 55}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('salad_01')
+        } else if ($($burgerIngredient).hasClass('bun_top_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 155}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('bun_01')
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('salad_01') || $(firstElementOfBurgerItemsSibling).hasClass('salad_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cutlet_01')
+        } else if ($($burgerIngredient).hasClass('onion_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 105}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('onion_01')
+        } else if ($($burgerIngredient).hasClass('mayo_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 5}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('mayo_01')
+        } else if ($($burgerIngredient).hasClass('cucumber_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 190}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cucumber_01')
+        } else if ($($burgerIngredient).hasClass('tomatoe_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('tomatoe_01')
+        } else if ($($burgerIngredient).hasClass('cheese_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('cheese_01')
+        } else if ($($burgerIngredient).hasClass('bun_top_01')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 140}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('bun_01')
+        }
+      }
+
+
+
     }
     if (valueIncrement.innerText == 2) {
+      const allBurgerItemsArray = [...$burgerItems.children]
       const $burgerIngredient = document.createElement('img')
       $burgerIngredient.src = `${renderIngredientsData[i].img}`
       $burgerIngredient.id = `${renderIngredientsData[i].id}_02`
@@ -104,6 +428,316 @@ export default function MakeYourBurger() {
       $burgerItems.prepend($burgerIngredient)
       const totalPrice = `$${parseInt(priceValue) + data[i].price}`
       $price.innerText = totalPrice
+
+      const firstElementOfBurgerItems = $burgerItems.firstElementChild
+      const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
+      const positionTop = $(firstElementOfBurgerItemsSibling).position().top
+      console.log(positionTop)
+      if ($(firstElementOfBurgerItemsSibling).hasClass('cutlet_01') || $(firstElementOfBurgerItemsSibling).hasClass('cutlet_02')) {
+        if ($($burgerIngredient).hasClass('mayo_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_02') || $($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cucumber_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 165}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cheese_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 30}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('salad_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cutlet_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 55}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('mayo_01') || $(firstElementOfBurgerItemsSibling).hasClass('mayo_02')) {
+
+        if ($($burgerIngredient).hasClass('cutlet_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 85}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 115}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 115}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cucumber_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 195}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cheese_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 5}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('salad_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 45}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 135}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('mayo_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 20}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        }
+      }
+
+      if ($(firstElementOfBurgerItemsSibling).hasClass('onion_01') || $(firstElementOfBurgerItemsSibling).hasClass('onion_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('mayo_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 75}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 35}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cucumber_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cheese_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('salad_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 40}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 50}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 30}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('tomatoe_01') || $(firstElementOfBurgerItemsSibling).hasClass('tomatoe_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 15}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 45}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('mayo_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 60}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cucumber_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 125}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cheese_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 70}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('salad_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 30}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 65}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 45}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        }
+      }
+
+      if ($(firstElementOfBurgerItemsSibling).hasClass('cucumber_01') || $(firstElementOfBurgerItemsSibling).hasClass('cucumber_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 70}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 40}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('mayo_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 135}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 40}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cheese_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 150}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('salad_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 20}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cucumber_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 40}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('cheese_01') || $(firstElementOfBurgerItemsSibling).hasClass('cheese_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 105}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 130}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('mayo_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 25}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+          console.log('mayo_01')
+        } else if ($($burgerIngredient).hasClass('cucumber_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 205}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 130}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('salad_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 55}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 155}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cheese_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        }
+      }
+      if ($(firstElementOfBurgerItemsSibling).hasClass('salad_01') || $(firstElementOfBurgerItemsSibling).hasClass('salad_02')) {
+        if ($($burgerIngredient).hasClass('cutlet_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 80}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('onion_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 105}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('mayo_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 5}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cucumber_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 190}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('tomatoe_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 110}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('cheese_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop + 10}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('bun_top_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 140}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        } else if ($($burgerIngredient).hasClass('salad_02')) {
+          $($burgerIngredient).css({
+            'top': `${positionTop - 30}px`,
+            'z-index': `${allBurgerItemsArray.length}`
+          })
+        }
+      }
     }
 
   }
@@ -112,21 +746,27 @@ export default function MakeYourBurger() {
     const valueDecrement = $value[i]
     const $price = document.querySelector('.price')
     const priceValue = $price.innerText.replace('$', '')
+    const lastElementOfBurgerItem = document.querySelector('.burger--items').firstElementChild
 
-    if (valueDecrement.innerText == 2) {
+    if (valueDecrement.innerText == 2 && lastElementOfBurgerItem.classList.contains(`${renderIngredientsData[i].class}_02`)) {
       const itemId = `#${renderIngredientsData[i].id}_02`
       const $burgerItemsId = document.querySelector(itemId)
       $burgerItemsId.remove()
       const totalPrice = `$${parseInt(priceValue) - data[i].price}`
       $price.innerText = totalPrice
-    } else if (valueDecrement.innerText == 1) {
+      valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
+    } else if (valueDecrement.innerText == 1 && lastElementOfBurgerItem.classList.contains(`${renderIngredientsData[i].class}_01`)) {
       const itemId = `#${renderIngredientsData[i].id}_01`
       const $burgerItemsId = document.querySelector(itemId)
       $burgerItemsId.remove()
       const totalPrice = `$${parseInt(priceValue) - data[i].price}`
       $price.innerText = totalPrice
+      valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
+    } else {
+      return
     }
-    valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
+
+
     if (valueDecrement.innerText == 0) {
       const btnDecrement = $decrements[i].parentElement
       btnDecrement.disabled = true
@@ -136,5 +776,7 @@ export default function MakeYourBurger() {
       const btnIncrement = $increments[i].parentElement
       btnIncrement.disabled = false
     }
+
+
   }
 }

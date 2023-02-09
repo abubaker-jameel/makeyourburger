@@ -638,7 +638,7 @@ h6 {
 }
 
 .burger--items img {
-  display: block;
+  display: inline-block;
   width: 100%;
 }
 
@@ -661,7 +661,43 @@ h6 {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+  transition: all linear 0.5s;
 }
+
+.cutlet_01,
+.cutlet_02 {
+  top: -75px;
+}
+
+.mayo_01,
+.mayo_02 {
+  top: 0px;
+}
+.onion_01,
+.onion_02 {
+  top: -100px;
+}
+.tomatoe_01,
+.tomatoe_02 {
+  top: -105px;
+}
+.cucumber_01,
+.cucumber_02 {
+  top: -180px;
+}
+.cheese_01,
+.cheese_02 {
+  top: 15px;
+}
+.salad_01,
+.salad_02 {
+  top: -30px;
+}
+.bun_top_01,
+.bun_top_02 {
+  top: -125px;
+}
+
 .total > h3 {
   color: var(--primary-indigo);
 }
@@ -716,15 +752,6 @@ h6 {
   height: 0.2em;
   background-color: var(--primary-titan-white);
 }
-
-/* @media (max-width: 50em) {
-  .main__burger--grid {
-    grid-template-columns: 1fr;
-  }
-  .burger__items--container {
-    height: 400px;
-  }
-} */
 @media (max-width: 26.25em) {
   .main__burger--grid {
     grid-template-columns: 320px;
