@@ -2,6 +2,9 @@ import view from "../utils/view.js"
 
 export default function Discovery() {
   view.innerHTML = `
+    <div class="loader__block">
+  <div class="loader"></div>
+  </div>
     <div class="main__hero--grid">
       <div class="title__screen--01">
         <h1>make your burger</h1>
@@ -13,4 +16,8 @@ export default function Discovery() {
       <img class="hero__burger--mob" src="./assests/main-img-mob.svg" alt="hero-burger-image-mob">
       <button class="btn btn--hero font-24 extra-bold "><span class="width__btn--hero"><a href="#/makeyourburger">Make Burger</a></span></button>
     </div>`
+
+  setTimeout(() => {
+    $('.loader__block').fadeOut('slow')
+  }, 2000);
 }

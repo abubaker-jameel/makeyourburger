@@ -6,10 +6,11 @@ import renderIngredientsData from '../utils/renderIngredientsData'
 export default function MakeYourBurger() {
   const items = data.map((item) => Ingredient(item))
 
-
-
   // const renderIngredientImages = renderIngredientsArray.map(image => RenderIngredient(image.img))
   view.innerHTML = `
+  <div class="loader__block">
+  <div class="loader"></div>
+  </div>
   <div class="main__burger--grid">
       <div class="title__screen--02">
         <h1>Make Your Burger</h1>
@@ -56,6 +57,9 @@ export default function MakeYourBurger() {
     </div>
 `
 
+  setTimeout(() => {
+    $('.loader__block').fadeOut('slow')
+  }, 2000);
   const $increments = document.querySelectorAll('.fa-plus')
   const $decrements = document.querySelectorAll('.fa-minus')
   const $value = document.querySelectorAll('.value')
