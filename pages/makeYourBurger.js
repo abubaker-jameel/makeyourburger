@@ -38,15 +38,15 @@ export default function MakeYourBurger() {
         <div class="summary__main">
           <div class="summary__time">
             <img class="summary__icon--time" src="./assests/Summary-icon-time.png" alt="time">
-            <span class="font-14 semi-bold time">7 min</span>
+            <span class="font-14 semi-bold time">0 min</span>
           </div>
           <div class="summary__weight">
             <img class="summary__icon--weight" src="./assests/Summary-icon-weight.png" alt="weight">
-            <span class="font-14 semi-bold weight">20 oz</span>
+            <span class="font-14 semi-bold weight">0 oz</span>
           </div>
           <div class="summary__energy">
             <img class="summary__icon--time" src="./assests/Summary-icon-energy.png" alt="energy">
-            <span class="font-14 semi-bold energy">429 kcal</span>
+            <span class="font-14 semi-bold energy">0 kcal</span>
           </div>
         </div>
       </div>
@@ -81,6 +81,13 @@ export default function MakeYourBurger() {
     const valueIncrement = $value[i]
     const $price = document.querySelector('.price')
     const priceValue = $price.innerText.replace('$', '')
+    const $time = document.querySelector('.time')
+    const timeValue = $time.innerText.replace('min', '')
+    const $weight = document.querySelector('.weight')
+    const weightValue = $weight.innerText.replace('oz', '')
+    const $energy = document.querySelector('.energy')
+    const energyValue = $energy.innerText.replace('kcal', '')
+    console.log($time, $weight, $energy)
     const bunElement = valueIncrement.parentElement.parentElement.firstElementChild.firstElementChild
 
     if (allBurgerItemsArray.length < 6 && (bunElement.getAttribute('alt') === 'Bun')) {
@@ -123,6 +130,12 @@ export default function MakeYourBurger() {
       $burgerItems.prepend($burgerIngredient)
       const totalPrice = `$${parseInt(priceValue) + data[i].price}`
       $price.innerText = totalPrice
+      const totalTime = `${parseInt(timeValue) + data[i].time} min`
+      $time.innerText = totalTime
+      const totalWeight = `${parseInt(weightValue) + data[i].weight} oz`
+      $weight.innerText = totalWeight
+      const totalEnergy = `${parseInt(energyValue) + data[i].energy} kcal`
+      $energy.innerText = totalEnergy
 
       const firstElementOfBurgerItems = $burgerItems.firstElementChild
       const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
@@ -411,6 +424,12 @@ export default function MakeYourBurger() {
       $burgerItems.prepend($burgerIngredient)
       const totalPrice = `$${parseInt(priceValue) + data[i].price}`
       $price.innerText = totalPrice
+      const totalTime = `${parseInt(timeValue) + data[i].time} min`
+      $time.innerText = totalTime
+      const totalWeight = `${parseInt(weightValue) + data[i].weight} oz`
+      $weight.innerText = totalWeight
+      const totalEnergy = `${parseInt(energyValue) + data[i].energy} kcal`
+      $energy.innerText = totalEnergy
 
       const firstElementOfBurgerItems = $burgerItems.firstElementChild
       const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
@@ -693,16 +712,27 @@ export default function MakeYourBurger() {
     const valueDecrement = $value[i]
     const $price = document.querySelector('.price')
     const priceValue = $price.innerText.replace('$', '')
+    const $time = document.querySelector('.time')
+    const timeValue = $time.innerText.replace('min', '')
+    const $weight = document.querySelector('.weight')
+    const weightValue = $weight.innerText.replace('oz', '')
+    const $energy = document.querySelector('.energy')
+    const energyValue = $energy.innerText.replace('kcal', '')
     const lastElementOfBurgerItem = document.querySelector('.burger--items').firstElementChild
 
     if (valueDecrement.innerText == 2) {
       const itemId = `#${renderIngredientsData[i].id}_02`
       const $burgerItemsId = document.querySelector(itemId)
       const prevAllBurgerItems = $($burgerItemsId).prevAll()
-
       $burgerItemsId.remove()
       const totalPrice = `$${parseInt(priceValue) - data[i].price}`
       $price.innerText = totalPrice
+      const totalTime = `${parseInt(timeValue) - data[i].time} min`
+      $time.innerText = totalTime
+      const totalWeight = `${parseInt(weightValue) - data[i].weight} oz`
+      $weight.innerText = totalWeight
+      const totalEnergy = `${parseInt(energyValue) - data[i].energy} kcal`
+      $energy.innerText = totalEnergy
       valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
 
       if ($($burgerItemsId).hasClass('cutlet_02')) {
@@ -1435,6 +1465,12 @@ export default function MakeYourBurger() {
       $burgerItemsId.remove()
       const totalPrice = `$${parseInt(priceValue) - data[i].price}`
       $price.innerText = totalPrice
+      const totalTime = `${parseInt(timeValue) - data[i].time} min`
+      $time.innerText = totalTime
+      const totalWeight = `${parseInt(weightValue) - data[i].weight} oz`
+      $weight.innerText = totalWeight
+      const totalEnergy = `${parseInt(energyValue) - data[i].energy} kcal`
+      $energy.innerText = totalEnergy
       valueDecrement.innerText = parseInt(valueDecrement.innerText) - 1
     } else {
       document.querySelectorAll('.warning__alert')[0].classList.remove('hide')
