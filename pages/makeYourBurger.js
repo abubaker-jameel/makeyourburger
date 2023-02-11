@@ -1452,7 +1452,7 @@ export default function MakeYourBurger() {
               'z-index': `${previousItemZindex - 1}`
             })
           }
-          if ($(previousItem).hasClass('salad_01') || $(previousItem).hasClass('salad_02')) {
+          if ($(previousItem).hasClass('mayo_01') || $(previousItem).hasClass('mayo_02')) {
             $(previousItem).css({
               'top': `${previousItemPosition + 30}px`,
               'z-index': `${previousItemZindex - 1}`
