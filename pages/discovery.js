@@ -14,7 +14,9 @@ export default function Discovery() {
       </p>
       <img class="hero__burger" src="./assests/main-img.svg" alt="hero-burger-image">
       <img class="hero__burger--mob" src="./assests/main-img-mob.svg" alt="hero-burger-image-mob">
-      <button class="btn btn--hero font-24 extra-bold "><span class="width__btn--hero"><a href="#/makeyourburger">Make Burger</a></span></button>
+      <button class="btn btn--hero font-24 extra-bold ">
+      <a href="#/makeyourburger"><span class="width__btn--hero">Make Burger</span></a>
+      </button>
     </div>`
 
   setTimeout(() => {
