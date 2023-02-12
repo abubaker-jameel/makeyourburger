@@ -3,6 +3,7 @@ import RouterHandler from './router.js'
 class App {
     constructor() {
         this.$btnToggle = document.querySelector('#btn__toggle')
+        this.$navToggle = document.querySelector('.toggle__navbar')
         this.$faBars = document.querySelector('.fa-bars')
         this.$faXmark = document.querySelector('.fa-xmark')
         this.$toggleNavbar = document.querySelector('.toggle__navbar')
@@ -15,6 +16,10 @@ class App {
         this.hasLocation()
         window.addEventListener('popstate', () => {
             this.hasLocation()
+            this.$toggleNavbar.classList.remove('show')
+            this.$toggleNavbar.classList.add('hide')
+            this.$faBars.style.display = 'block'
+            this.$faXmark.style.display = 'none'
         })
     }
     handleEventListeners() {
@@ -28,15 +33,14 @@ class App {
 
     handleNavToggle(event) {
         const isContainEvent = this.$btnToggle.contains(event.target)
-
         const hasHide = this.$toggleNavbar.classList.contains('hide')
-
+        console.log(isContainEvent)
         if (isContainEvent && hasHide) {
             this.$toggleNavbar.classList.remove('hide')
             this.$toggleNavbar.classList.add('show')
             this.$faBars.style.display = 'none'
             this.$faXmark.style.display = 'block'
-        } else {
+        } else if (!this.$toggleNavbar.contains(event.target)) {
             this.$toggleNavbar.classList.remove('show')
             this.$toggleNavbar.classList.add('hide')
             this.$faBars.style.display = 'block'
