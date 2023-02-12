@@ -5,7 +5,7 @@ export default function Discovery() {
     <div class="loader__block">
   <div class="loader"></div>
   </div>
-    <div class="main__hero--grid">
+    <div class="main__hero--grid" id="hero__page">
       <div class="title__screen--01">
         <h1>make your burger</h1>
       </div>
@@ -20,4 +20,5 @@ export default function Discovery() {
   setTimeout(() => {
     $('.loader__block').fadeOut('slow')
   }, 2000);
+
 }

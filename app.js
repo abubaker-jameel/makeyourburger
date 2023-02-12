@@ -7,9 +7,15 @@ class App {
         this.$faXmark = document.querySelector('.fa-xmark')
         this.$toggleNavbar = document.querySelector('.toggle__navbar')
         this.$faXmark.style.display = 'none'
+        this.$linkDiscovery = document.querySelectorAll('a')[0]
+        this.$linkMakeYourBurger = document.querySelectorAll('a')[1]
 
         new RouterHandler();
         this.handleEventListeners()
+        this.hasLocation()
+        window.addEventListener('popstate', () => {
+            this.hasLocation()
+        })
     }
     handleEventListeners() {
         document.body.addEventListener('click', event => {
@@ -44,6 +50,16 @@ class App {
     handleHoverAvatarOut() {
         const $avatarDropDown = document.querySelector('.avatar__drop--down')
         $avatarDropDown.style.display = 'none'
+    }
+
+    hasLocation() {
+        if (location.hash == '#/') {
+            this.$linkDiscovery.classList.add('active')
+            this.$linkMakeYourBurger.classList.remove('active')
+        } else if (location.hash == '#/makeyourburger') {
+            this.$linkDiscovery.classList.remove('active')
+            this.$linkMakeYourBurger.classList.add('active')
+        }
     }
 
 }

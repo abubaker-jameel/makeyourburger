@@ -11,7 +11,7 @@ export default function MakeYourBurger() {
   <div class="loader__block">
   <div class="loader"></div>
   </div>
-  <div class="main__burger--grid">
+  <div class="main__burger--grid" id="burger__page">
       <div class="title__screen--02">
         <h1>Make Your Burger</h1>
       </div>

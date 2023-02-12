@@ -334,20 +334,15 @@ h6 {
   text-decoration: none;
   text-transform: capitalize;
 }
-.nav__list > li > a:hover {
+.nav__list > li > :is(a:hover, a:focus) {
   font-weight: var(--primary-semi-bold-600);
   border-bottom: 2px solid var(--primary-indigo);
   padding-bottom: 5px;
 }
-.nav__list > li > a::after {
-  content: "";
-  display: block;
+.active {
   font-weight: var(--primary-semi-bold-600);
   border-bottom: 2px solid var(--primary-indigo);
-  visibility: hidden;
-  overflow: hidden;
-  user-select: none;
-  pointer-events: none;
+  padding-bottom: 5px;
 }
 .right__navbar {
   flex: 1 1 27.5em;
