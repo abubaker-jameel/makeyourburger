@@ -205,14 +205,17 @@ h6 {
   line-height: 1.2;
   letter-spacing: 3px;
   text-transform: uppercase;
+  transition: all 400ms cubic-bezier(0.47, 1.64, 0.41, 0.8);
+}
+.btn--hero > a {
+  color: var(--primary-white);
+  text-decoration: none;
+  border-radius: 100vmax;
+  padding: 0 0.1em;
+  aspect-ratio: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 400ms cubic-bezier(0.47, 1.64, 0.41, 0.8);
-}
-.btn--hero > span > a {
-  color: var(--primary-white);
-  text-decoration: none;
 }
 .btn--hero:hover,
 .btn--hero:focus-visible {
@@ -334,20 +337,15 @@ h6 {
   text-decoration: none;
   text-transform: capitalize;
 }
-.nav__list > li > a:hover {
+.nav__list > li > :is(a:hover, a:focus) {
   font-weight: var(--primary-semi-bold-600);
   border-bottom: 2px solid var(--primary-indigo);
   padding-bottom: 5px;
 }
-.nav__list > li > a::after {
-  content: "";
-  display: block;
+.active {
   font-weight: var(--primary-semi-bold-600);
   border-bottom: 2px solid var(--primary-indigo);
-  visibility: hidden;
-  overflow: hidden;
-  user-select: none;
-  pointer-events: none;
+  padding-bottom: 5px;
 }
 .right__navbar {
   flex: 1 1 27.5em;
