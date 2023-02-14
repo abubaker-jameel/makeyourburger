@@ -2,6 +2,7 @@ import view from '../utils/view.js'
 import Ingredient from '../components/ingredient.js'
 import data from '../utils/data.js'
 import renderIngredientsData from '../utils/renderIngredientsData'
+import checkoutModal from '../components/checkoutModal.js';
 
 export default function MakeYourBurger() {
   const items = data.map((item) => Ingredient(item))
@@ -34,7 +35,7 @@ export default function MakeYourBurger() {
         <span class="divider"></span>
         <div class="total padding-block-26">
           <h3 class="font-36 extra-bold price">$0</h3>
-          <button class="btn btn--checkout font-16 semi-bold">Checkout</button>
+          <button class="btn btn--checkout font-16 semi-bold" data-btn-checkout="btn--checkout"">Checkout</button>
         </div>
         <div class="summary__main">
           <div class="summary__time">
@@ -55,7 +56,44 @@ export default function MakeYourBurger() {
     <div class = "main__ingredients--grid padding-block-32" >
         ${items.join('')}
     </div>
+    ${checkoutModal()}
 `
+  const $floatField = document.querySelectorAll('.float__field')
+  const $floatFieldContainer = document.querySelectorAll('.float__container')
+  const $modalCheckout = document.querySelector('[data-checkout-modal')
+  const $btnClose = document.querySelector('[data-close-icon')
+  const $btnCancel = document.querySelector('[data-btn-cancel')
+  $btnClose.addEventListener('click', () => {
+    $btnClose.parentElement.parentElement.parentElement.classList.remove('show')
+  })
+  $btnCancel.addEventListener('click', () => {
+    $modalCheckout.classList.remove('show')
+  })
+  const $checkout = document.querySelector('[data-btn-checkout')
+  $checkout.addEventListener('click', () => {
+    $modalCheckout.classList.add('show')
+    console.log($modalCheckout)
+    console.log('btn checkout')
+  })
+
+  $floatField.forEach(floatFieldInput => {
+    floatFieldInput.addEventListener('focus', (event) => {
+      const targetElement = event.currentTarget
+      targetElement.previousElementSibling.classList.add('active__input')
+      setTimeout(() => {
+        targetElement.setAttribute('placeholder', targetElement.getAttribute(
+          'data-placeholder'
+        ))
+      }, 250);
+    })
+    floatFieldInput.addEventListener('blur', (event) => {
+      const targetElement = event.currentTarget
+      if (!targetElement.value) {
+        targetElement.previousElementSibling.classList.remove('active__input')
+      }
+      targetElement.removeAttribute('placeholder')
+    })
+  })
 
   setTimeout(() => {
     $('.loader__block').fadeOut('slow')

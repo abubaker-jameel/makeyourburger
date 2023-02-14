@@ -29,6 +29,7 @@ class App {
         const $avatar = document.querySelector('.avatar')
         $avatar.addEventListener('mouseover', this.handleHoverAvatarOver)
         $avatar.addEventListener('mouseout', this.handleHoverAvatarOut)
+
     }
 
     handleNavToggle(event) {
