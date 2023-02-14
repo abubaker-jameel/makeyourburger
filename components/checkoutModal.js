@@ -44,7 +44,7 @@ export default function Modal() {
         <button class="btn--sm btn--primary">checkout</button>
       </div>
     </div>
-  </div>)
+  </div>
         `
   )
 }
