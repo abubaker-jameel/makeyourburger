@@ -40,8 +40,8 @@ export default function Modal() {
         </form>
       </div>
       <div class="footer">
-        <button class="btn--sm btn--ghost" data-btn-cancel="btn--cancel">cancel</button>
-        <button class="btn--sm btn--primary">checkout</button>
+        <button class="btn--sm btn--ghost btn__cancel" data-btn-cancel="btn--cancel">cancel</button>
+        <button class="btn--sm btn--primary btn__checkout">checkout</button>
       </div>
     </div>
   </div>
