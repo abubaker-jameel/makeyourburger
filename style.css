@@ -351,6 +351,19 @@ h6 {
   border-bottom: 2px solid var(--primary-indigo);
   padding-bottom: 5px;
 }
+.nav__list > li > a::after {
+  display: block;
+  height: 1px;
+  color: transparent;
+  content: attr(data-text);
+  visibility: hidden;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  font-weight: var(--primary-semi-bold-600);
+  border-bottom: 2px solid var(--primary-indigo);
+  padding-bottom: 5px;
+}
 .active {
   font-weight: var(--primary-semi-bold-600);
   border-bottom: 2px solid var(--primary-indigo);
