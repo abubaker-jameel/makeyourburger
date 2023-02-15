@@ -1131,7 +1131,7 @@ export default function MakeYourBurger() {
           }
           if ($(previousItem).hasClass('bun_top_01')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 30}px`,
+              'top': `${previousItemPosition + 40}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
@@ -1498,7 +1498,7 @@ export default function MakeYourBurger() {
           }
           if ($(previousItem).hasClass('bun_top_01')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 30}px`,
+              'top': `${previousItemPosition + 40}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
