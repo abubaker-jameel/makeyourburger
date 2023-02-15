@@ -843,7 +843,7 @@ export default function MakeYourBurger() {
           }
           if ($(previousItem).hasClass('onion_01') || $(previousItem).hasClass('onion_02')) {
             $(previousItem).css({
-              'top': `${previousItemPosition + 15}px`,
+              'top': `${previousItemPosition + 20}px`,
               'z-index': `${previousItemZindex - 1}`
             })
           }
