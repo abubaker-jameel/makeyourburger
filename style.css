@@ -989,15 +989,16 @@ h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 .checkout__modal .card .body .float__container > i {
-  flex: 1 1 25%;
+  flex: 0 1 25%;
   text-align: center;
   color: var(--primary-indigo);
 }
 .checkout__modal .card .body .float__container .float__input {
   position: relative;
-  flex: 1 1 75%;
+  flex: 0 1 75%;
 }
 .checkout__modal .card .body .float__container .float__input > label {
   display: inline-block;
@@ -1008,12 +1009,16 @@ h6 {
   transform-origin: top left;
   transition: all ease-in 0.2s;
   color: var(--primary-muted);
+  font-size: var(--primary-XXL);
+  width: 100%;
 }
 .checkout__modal .card .body .float__container .float__input > input {
   outline: 0;
   border: none;
   padding-block: 12px 0px;
   text-transform: capitalize;
+  font-size: var(--primary-XXL);
+  width: 100%;
 }
 .checkout__modal .card .body .float__container .float__input .active__input {
   transform: translate(0px, -80%) scale(0.8);
@@ -1031,6 +1036,39 @@ h6 {
   }
   to {
     opacity: 1;
+  }
+}
+@media (max-width: 50em) {
+  .checkout__modal .card .title > :is(h5, i) {
+    font-size: var(--primary-14);
+  }
+  .checkout__modal .card {
+    height: 250px;
+  }
+  .checkout__modal .card .body form {
+    gap: 10px;
+    margin-block: 10px;
+  }
+  .checkout__modal .card .body .float__container {
+    padding: 5px;
+  }
+  .checkout__modal .card .body .float__container > i {
+    flex: 0 1 15%;
+    font-size: var(--primary-12);
+  }
+  .checkout__modal .card .body .float__container .float__input {
+    position: relative;
+    flex: 0 1 85%;
+  }
+  .checkout__modal .card .body .float__container .float__input > label {
+    font-size: var(--primary-12);
+  }
+  .checkout__modal .card .body .float__container .float__input > input {
+    font-size: var(--primary-12);
+  }
+  .checkout__modal .card .footer .btn__cancel,
+  .checkout__modal .card .footer .btn__checkout {
+    font-size: var(--primary-12);
   }
 }
 .hide {
