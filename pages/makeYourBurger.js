@@ -129,7 +129,6 @@ export default function MakeYourBurger() {
     const weightValue = $weight.innerText.replace('oz', '')
     const $energy = document.querySelector('.energy')
     const energyValue = $energy.innerText.replace('kcal', '')
-    console.log($time, $weight, $energy)
     const bunElement = valueIncrement.parentElement.parentElement.firstElementChild.firstElementChild
 
     if (allBurgerItemsArray.length < 6 && (bunElement.getAttribute('alt') === 'Bun')) {
@@ -146,6 +145,7 @@ export default function MakeYourBurger() {
       }, 2000)
     } else {
       valueIncrement.innerText = parseInt(valueIncrement.innerText) + 1
+
     }
 
 
@@ -155,7 +155,16 @@ export default function MakeYourBurger() {
     }
     if (valueIncrement.innerText == 1) {
       const btnDecrement = $decrements[i].parentElement
+      const btnIncrement = $increments[i].parentElement
       btnDecrement.disabled = false
+      $(btnIncrement).css({
+        'pointer-events': 'none'
+      })
+      setTimeout(() => {
+        $(btnIncrement).css({
+          'pointer-events': 'auto'
+        })
+      }, 800);
     }
 
     if ((valueIncrement.innerText == 1) && (bunElement.getAttribute('alt') === 'Bun')) {
@@ -182,8 +191,6 @@ export default function MakeYourBurger() {
       const firstElementOfBurgerItems = $burgerItems.firstElementChild
       const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
       const positionTop = $(firstElementOfBurgerItemsSibling).position().top
-
-
 
       if ($(firstElementOfBurgerItemsSibling).hasClass('cutlet_01') || $(firstElementOfBurgerItemsSibling).hasClass('cutlet_02')) {
         if ($($burgerIngredient).hasClass('mayo_01')) {
@@ -476,6 +483,7 @@ export default function MakeYourBurger() {
       const firstElementOfBurgerItems = $burgerItems.firstElementChild
       const firstElementOfBurgerItemsSibling = firstElementOfBurgerItems.nextElementSibling
       const positionTop = $(firstElementOfBurgerItemsSibling).position().top
+
 
       if ($(firstElementOfBurgerItemsSibling).hasClass('cutlet_01') || $(firstElementOfBurgerItemsSibling).hasClass('cutlet_02')) {
         if ($($burgerIngredient).hasClass('mayo_02')) {
