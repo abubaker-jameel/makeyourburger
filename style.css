@@ -486,7 +486,7 @@ h6 {
     align-items: center;
     height: 80vh;
     position: absolute;
-    top: 115px;
+    top: 105px;
     right: 0;
     left: 0;
     z-index: 9999;
@@ -718,139 +718,6 @@ h6 {
 .bun_top_01,
 .bun_top_02 {
   top: -125px;
-}
-@media (max-width: 27.5em) {
-  .cutlet_01,
-  .cutlet_02 {
-    top: -73px;
-  }
-
-  .onion_01,
-  .onion_02 {
-    top: -95px;
-  }
-  .tomatoe_01,
-  .tomatoe_02 {
-    top: -98px;
-  }
-  .cucumber_01,
-  .cucumber_02 {
-    top: -168px;
-  }
-}
-@media (max-width: 26.25em) {
-  .cutlet_01,
-  .cutlet_02 {
-    top: -70px;
-  }
-
-  .onion_01,
-  .onion_02 {
-    top: -90px;
-  }
-  .tomatoe_01,
-  .tomatoe_02 {
-    top: -95px;
-  }
-  .cucumber_01,
-  .cucumber_02 {
-    top: -165px;
-  }
-}
-@media (max-width: 25em) {
-  .cutlet_01,
-  .cutlet_02 {
-    top: -67px;
-  }
-
-  .onion_01,
-  .onion_02 {
-    top: -85px;
-  }
-  .tomatoe_01,
-  .tomatoe_02 {
-    top: -88px;
-  }
-  .cucumber_01,
-  .cucumber_02 {
-    top: -156px;
-  }
-}
-@media (max-width: 24.325em) {
-  .cutlet_01,
-  .cutlet_02 {
-    top: -65px;
-  }
-
-  .onion_01,
-  .onion_02 {
-    top: -82px;
-  }
-  .tomatoe_01,
-  .tomatoe_02 {
-    top: -85px;
-  }
-  .cucumber_01,
-  .cucumber_02 {
-    top: -151px;
-  }
-}
-@media (max-width: 23.125em) {
-  .cutlet_01,
-  .cutlet_02 {
-    top: -60px;
-  }
-
-  .onion_01,
-  .onion_02 {
-    top: -80px;
-  }
-  .tomatoe_01,
-  .tomatoe_02 {
-    top: -80px;
-  }
-  .cucumber_01,
-  .cucumber_02 {
-    top: -145px;
-  }
-}
-@media (max-width: 21.875em) {
-  .cutlet_01,
-  .cutlet_02 {
-    top: -57px;
-  }
-
-  .onion_01,
-  .onion_02 {
-    top: -75px;
-  }
-  .tomatoe_01,
-  .tomatoe_02 {
-    top: -78px;
-  }
-  .cucumber_01,
-  .cucumber_02 {
-    top: -135px;
-  }
-}
-@media (max-width: 21.25em) {
-  .cutlet_01,
-  .cutlet_02 {
-    top: -55px;
-  }
-
-  .onion_01,
-  .onion_02 {
-    top: -70px;
-  }
-  .tomatoe_01,
-  .tomatoe_02 {
-    top: -73px;
-  }
-  .cucumber_01,
-  .cucumber_02 {
-    top: -130px;
-  }
 }
 .total > h3 {
   color: var(--primary-indigo);
