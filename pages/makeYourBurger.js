@@ -111,12 +111,12 @@ export default function MakeYourBurger() {
       const btnDecrement = $decrements[i].parentElement
       btnDecrement.disabled = true
     }
-    btnIncrement.addEventListener('click', () => handleIncrement(Event, i))
+    btnIncrement.addEventListener('click', () => handleIncrement(i))
 
-    btnDecrement.addEventListener('click', () => handleDecrement(Event, i))
+    btnDecrement.addEventListener('click', () => handleDecrement(i))
   }
 
-  function handleIncrement(Event, i) {
+  function handleIncrement(i) {
     const firstElementOfBurgerItems = $burgerItems.firstElementChild
     const allBurgerItems = $burgerItems.children
     const allBurgerItemsArray = [...allBurgerItems]
@@ -758,7 +758,7 @@ export default function MakeYourBurger() {
 
   }
 
-  function handleDecrement(Event, i) {
+  function handleDecrement(i) {
     const valueDecrement = $value[i]
     const $price = document.querySelector('.price')
     const priceValue = $price.innerText.replace('$', '')
