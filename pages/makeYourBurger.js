@@ -18,7 +18,7 @@ export default function MakeYourBurger() {
       </div>
       <div class="burger__items--container">
         <div class="burger--items">
-          <img class="bun burger--item" src="/assests/items/bun_bottom.svg" alt="bun">
+          <img class="bun burger--item" src="./assests/items/bun_bottom.svg" alt="bun">
         </div>
         <div class="warning__alert hide">
           <p>Please remove the previous burger item first.</p>
