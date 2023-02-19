@@ -640,7 +640,7 @@ h6 {
 }
 .burger__items--container {
   height: 500px;
-  background: url("./assests/bg--blob.svg") no-repeat;
+  background: url("/bg--blob.svg") no-repeat;
   background-size: contain;
   display: flex;
   flex-direction: column;
