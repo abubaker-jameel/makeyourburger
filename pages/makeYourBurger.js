@@ -1534,7 +1534,5 @@ export default function MakeYourBurger() {
       const btnIncrement = $increments[i].parentElement
       btnIncrement.disabled = false
     }
-
-
   }
 }
