@@ -59,7 +59,6 @@ export default function MakeYourBurger() {
     ${checkoutModal()}
 `
   const $floatField = document.querySelectorAll('.float__field')
-  const $floatFieldContainer = document.querySelectorAll('.float__container')
   const $modalCheckout = document.querySelector('[data-checkout-modal')
   const $btnClose = document.querySelector('[data-close-icon')
   const $btnCancel = document.querySelector('[data-btn-cancel')
