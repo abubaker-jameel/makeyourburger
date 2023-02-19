@@ -72,8 +72,6 @@ export default function MakeYourBurger() {
   const $checkout = document.querySelector('[data-btn-checkout')
   $checkout.addEventListener('click', () => {
     $modalCheckout.classList.add('show')
-    console.log($modalCheckout)
-    console.log('btn checkout')
   })
 
   $floatField.forEach(floatFieldInput => {
@@ -1313,7 +1311,6 @@ export default function MakeYourBurger() {
           const previousItem = prevAllBurgerItems[item]
           const previousItemPosition = $(previousItem).position().top
           const previousItemZindex = $(previousItem).css('z-index')
-          console.log(previousItem, previousItemZindex)
 
           if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
             $(previousItem).css({
@@ -1466,7 +1463,6 @@ export default function MakeYourBurger() {
           const previousItem = prevAllBurgerItems[item]
           const previousItemPosition = $(previousItem).position().top
           const previousItemZindex = $(previousItem).css('z-index')
-          console.log(previousItem, previousItemZindex)
 
           if ($(previousItem).hasClass('cutlet_01') || $(previousItem).hasClass('cutlet_02')) {
             $(previousItem).css({
@@ -1528,7 +1524,6 @@ export default function MakeYourBurger() {
         document.querySelectorAll('.warning__alert')[0].classList.add('hide')
       }, 2000)
     }
-
 
     if (valueDecrement.innerText == 0) {
       const btnDecrement = $decrements[i].parentElement
