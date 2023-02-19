@@ -35,7 +35,6 @@ class App {
     handleNavToggle(event) {
         const isContainEvent = this.$btnToggle.contains(event.target)
         const hasHide = this.$toggleNavbar.classList.contains('hide')
-        console.log(isContainEvent)
         if (isContainEvent && hasHide) {
             this.$toggleNavbar.classList.remove('hide')
             this.$toggleNavbar.classList.add('show')
