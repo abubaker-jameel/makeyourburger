@@ -204,7 +204,8 @@ h6 {
 }
 .btn--hero {
   position: absolute;
-  inset: 70% 0 0 50%;
+  top: 70%;
+  left: 50%;
   transform: translate(-50%, -70%);
   border-radius: 100vmax;
   padding: 0 0.1em;
