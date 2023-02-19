@@ -1,7 +1,7 @@
 export default [{
         id: 1,
         name: 'Cutlet',
-        img: './assests/items/cutlet.svg',
+        img: '/items/cutlet.svg',
         price: 1,
         time: 1,
         weight: 5,
@@ -10,7 +10,7 @@ export default [{
     {
         id: 2,
         name: 'Mayo',
-        img: './assests/items/mayo.svg',
+        img: '/items/mayo.svg',
         price: 2,
         time: 1,
         weight: 3,
@@ -19,7 +19,7 @@ export default [{
     {
         id: 3,
         name: 'Onion',
-        img: './assests/items/onion.svg',
+        img: '/items/onion.svg',
         price: 1,
         time: 1,
         weight: 2,
@@ -28,7 +28,7 @@ export default [{
     {
         id: 4,
         name: 'Tomatoe',
-        img: './assests/items/tomatoe.svg',
+        img: '/items/tomatoe.svg',
         price: 1,
         time: 1,
         weight: 2,
@@ -37,7 +37,7 @@ export default [{
     {
         id: 5,
         name: 'Cucumber',
-        img: './assests/items/cucumber.svg',
+        img: '/items/cucumber.svg',
         price: 1,
         time: 1,
         weight: 4,
@@ -46,7 +46,7 @@ export default [{
     {
         id: 6,
         name: 'Cheese',
-        img: './assests/items/cheese.svg',
+        img: '/items/cheese.svg',
         price: 2,
         time: 1,
         weight: 5,
@@ -55,7 +55,7 @@ export default [{
     {
         id: 7,
         name: 'Salad',
-        img: './assests/items/salad.svg',
+        img: '/items/salad.svg',
         price: 1,
         time: 1,
         weight: 2,
@@ -64,7 +64,7 @@ export default [{
     {
         id: 8,
         name: 'Bun',
-        img: './assests/items/bun_middle.svg',
+        img: '/items/bun_middle.svg',
         price: 1,
         time: 1,
         weight: 3,

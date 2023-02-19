@@ -18,7 +18,7 @@ export default function MakeYourBurger() {
       </div>
       <div class="burger__items--container">
         <div class="burger--items">
-          <img class="bun burger--item" src="./assests/items/bun_bottom.svg" alt="bun">
+          <img class="bun burger--item" src="/items/bun_bottom.svg" alt="bun">
         </div>
         <div class="warning__alert hide">
           <p>Please remove the previous burger item first.</p>
@@ -39,15 +39,15 @@ export default function MakeYourBurger() {
         </div>
         <div class="summary__main">
           <div class="summary__time">
-            <img class="summary__icon--time" src="./assests/Summary-icon-time.png" alt="time">
+            <img class="summary__icon--time" src="/Summary-icon-time.png" alt="time">
             <span class="font-14 semi-bold time">0 min</span>
           </div>
           <div class="summary__weight">
-            <img class="summary__icon--weight" src="./assests/Summary-icon-weight.png" alt="weight">
+            <img class="summary__icon--weight" src="/Summary-icon-weight.png" alt="weight">
             <span class="font-14 semi-bold weight">0 oz</span>
           </div>
           <div class="summary__energy">
-            <img class="summary__icon--time" src="./assests/Summary-icon-energy.png" alt="energy">
+            <img class="summary__icon--time" src="/Summary-icon-energy.png" alt="energy">
             <span class="font-14 semi-bold energy">0 kcal</span>
           </div>
         </div>
