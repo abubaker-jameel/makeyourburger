@@ -21,6 +21,9 @@ export default function MakeYourBurger() {
           <img class="bun burger--item" src="/items/bun_bottom.svg" alt="bun">
         </div>
         <div class="warning__alert hide">
+          <p>Please remove the previous burger item first.</p>
+        </div>
+        <div class="warning__alert hide">
           <p>Please atleast add 5 burger items before adding bun.</p>
         </div>
         <div class="warning__alert hide">
@@ -127,15 +130,15 @@ export default function MakeYourBurger() {
 
     if (allBurgerItemsArray.length < 6 && (bunElement.getAttribute('alt') === 'Bun')) {
       valueIncrement.innerText = parseInt(valueIncrement.innerText)
-      document.querySelectorAll('.warning__alert')[0].classList.remove('hide')
-      setTimeout(() => {
-        document.querySelectorAll('.warning__alert')[0].classList.add('hide')
-      }, 2000)
-    } else if (firstElementOfBurgerItems.classList.contains('bun_top_01')) {
-      valueIncrement.innerText = parseInt(valueIncrement.innerText)
       document.querySelectorAll('.warning__alert')[1].classList.remove('hide')
       setTimeout(() => {
         document.querySelectorAll('.warning__alert')[1].classList.add('hide')
+      }, 2000)
+    } else if (firstElementOfBurgerItems.classList.contains('bun_top_01')) {
+      valueIncrement.innerText = parseInt(valueIncrement.innerText)
+      document.querySelectorAll('.warning__alert')[2].classList.remove('hide')
+      setTimeout(() => {
+        document.querySelectorAll('.warning__alert')[2].classList.add('hide')
       }, 2000)
     } else {
       valueIncrement.innerText = parseInt(valueIncrement.innerText) + 1
