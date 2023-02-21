@@ -829,7 +829,7 @@ h6 {
 }
 .main__ingredients--grid {
   display: grid;
-  grid-auto-rows: 200px;
+  grid-auto-rows: minmax(200px, auto);
   grid-template-columns: repeat(auto-fit, 150px);
   gap: var(--size-32);
   justify-content: center;
@@ -847,7 +847,7 @@ h6 {
   margin-inline: 10px;
 }
 .ingredient__item--content {
-  flex: 1 1 100px;
+  flex: 0 1 100px;
   display: flex;
   align-items: center;
   justify-content: center;
